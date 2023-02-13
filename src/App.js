@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import NoteState from "./context/notes/noteState";
 import Alert from "./components/Alert";
+// import noteContext from "./context/notes/noteContext";
 
 export default function App() {
   document.body.style.backgroundColor = "rgb(16, 33, 58)";
@@ -20,6 +21,7 @@ export default function App() {
       setAlert(null);
     }, 2000);
   };
+  // const { alert, showAlert } = useContext(noteContext);
 
   return (
     <>
