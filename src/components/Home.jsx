@@ -1,41 +1,13 @@
 import React from "react";
+import AddNote from "./AddNote";
 import Notes from "./Notes";
 
-export default function Home() {
+export default function Home({ showAlert }) {
   return (
-    <div className="">
-      <h3 className="mt-5 text-capitalize">Add a note</h3>
-      <form className="my-2">
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Title...
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Description...
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+    <div className="mt-3" >
+      <AddNote showAlert={showAlert} />
       <h2 className="text-capitalize">Your notes</h2>
-      <Notes />
+      <Notes showAlert={showAlert} />
     </div>
   );
 }

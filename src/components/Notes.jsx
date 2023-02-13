@@ -2,16 +2,14 @@ import noteContext from "../context/notes/noteContext";
 import React, { useContext } from "react";
 import NoteItem from "./NoteItem";
 
-export default function Notes() {
+export default function Notes({ showAlert }) {
   const context = useContext(noteContext);
-  const { notes, setNotes } = context;
-  // eslint-disable-next-line
-  setNotes(notes);
+  const { notes } = context;
 
   return (
     <div className="row">
       {notes.map((note) => {
-        return <NoteItem key={note._id} note={note} />;
+        return <NoteItem showAlert={showAlert} key={note._id} note={note} />;
       })}
     </div>
   );
