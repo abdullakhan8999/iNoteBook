@@ -8,14 +8,14 @@ export default function AddNote({ showAlert }) {
   const alertMsg = (event) => {
     event.preventDefault();
     showAlert("primary", "Note submitted.");
-    if (!note.title || !note.description ) {
+    if (!note.title || !note.description) {
       return showAlert(
         `warning`,
         `Please Enter ${!note.title ? "title" : "description"}`
       );
     }
     addNote(note.title, note.description, note.tag);
-    
+    setNote({ title: "", description: "", tag: "" });
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -23,16 +23,33 @@ export default function AddNote({ showAlert }) {
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
-        <h3 className="mt-3 text-capitalize ">Add a note</h3>
-        <input
-          type="text"
-          name="tag"
-          className="form-control "
-          id="tag"
-          onChange={onChange}
-          style={{ width: "10rem", height: "38px" }}
-          placeholder="Default Tag: General"
-        />
+        <h3 className="mb-4 text-capitalize">Add a note</h3>
+        <div className="">
+          <input
+            type="text"
+            name="tag"
+            className={`form-control  bg-${
+              mode === "dark" ? "black" : "body-secondary"
+            } border border-${mode === "dark" ? "light" : "dark"} text-${
+              mode === "dark" ? "light" : "dark"
+            } `}
+            id="tag"
+            onChange={onChange}
+            aria-describedby="tagHelp"
+            style={{
+              width: "10rem",
+              height: "38px",
+              placeholderColor: "white",
+            }}
+            // placeholder="Default Tag: General"
+          />
+          <div
+            id="tagHelp"
+            className={`form-text text-${mode === "dark" ? "light" : "dark"}`}
+          >
+            Default Tag: General...
+          </div>
+        </div>
       </div>
       <form className="my-2">
         <div className="mb-3">
@@ -42,10 +59,15 @@ export default function AddNote({ showAlert }) {
           <input
             type="text"
             name="title"
-            className="form-control"
+            className={`form-control bg-${
+              mode === "dark" ? "black" : "body-secondary"
+            } border border-${mode === "dark" ? "light" : "dark"} text-${
+              mode === "dark" ? "light" : "dark"
+            }`}
             id="title"
             aria-describedby="titleHelp"
             onChange={onChange}
+            value={note.title}
           />
           <div
             id="titleHelp"
@@ -60,14 +82,19 @@ export default function AddNote({ showAlert }) {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control bg-${
+              mode === "dark" ? "black" : "body-secondary"
+            } border border-${mode === "dark" ? "light" : "dark"} text-${
+              mode === "dark" ? "light" : "dark"
+            }`}
             id="description"
             onChange={onChange}
             name="description"
+            value={note.description}
           />
         </div>
         <button type="submit" onClick={alertMsg} className="btn btn-primary">
-          Submit
+          Add Note
         </button>
       </form>
     </>

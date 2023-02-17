@@ -1,0 +1,25 @@
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .search {
+    width: 120px;
+  }
+  .accBtn {
+    margin: 10px 0;
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 500px) {
+  .search {
+    width: 130px;
+  }
+  .accBtn {
+    margin: 10px 0;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 650px) {
+  .search {
+    width: 200px;
+  }
+  .accBtn {
+    margin: 10px 0;
+  }
+}
+

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import noteContext from "../context/notes/noteContext";
 
-export default function NoteItem({ note, showAlert }) {
-  const alertMsg = (event) => {
+export default function NoteItem({ note, showAlert, updateNote }) {
+  const { deleteNote } = useContext(noteContext);
+
+  const alertMsg = async (event) => {
     event.preventDefault();
-    return showAlert("primary", "Note Deleted.");
+    // console.log(note._id);
+    await deleteNote(note._id);
+    return showAlert("warning", "Note Deleted");
   };
   return (
     <div className="col-md-3">
@@ -13,9 +18,14 @@ export default function NoteItem({ note, showAlert }) {
         <div className="card-body">
           <h5 className="card-title">{note.title}</h5>
           <p className="card-text">{note.description}</p>
-          <Link to="#" className="btn btn-primary mt-3  me-3">
+          <Link
+            to="#"
+            className="btn btn-primary mt-3  me-3"
+            onClick={() => updateNote(note)}
+          >
             <i className="fa-solid fa-pen-to-square"></i>
           </Link>
+
           <Link to="#" className="btn btn-danger mt-3 me-3" onClick={alertMsg}>
             <i className="fa-solid fa-trash-can"></i>
           </Link>
